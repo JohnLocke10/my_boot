@@ -2,8 +2,10 @@ package com.huzemaks.topic;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "topics")
 public class Topic {
     @Id
     private String id;

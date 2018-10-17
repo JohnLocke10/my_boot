@@ -1,12 +1,14 @@
 package com.huzemaks.course;
 
+import com.huzemaks.student.Student;
 import com.huzemaks.topic.Topic;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "courses")
 public class Course {
     @Id
     private String id;
@@ -14,6 +16,22 @@ public class Course {
     private String description;
     @ManyToOne
     private Topic topic;
+
+    @ManyToMany()
+    @JoinTable(
+            name = "courses_students",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")}
+    )
+    Set<Student> students = new HashSet<>();
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 
     public Course() {
     }
@@ -33,6 +51,7 @@ public class Course {
     public void setTopic(Topic topic) {
         this.topic = topic;
     }
+
     public String getId() {
         return id;
     }

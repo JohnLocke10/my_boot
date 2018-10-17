@@ -21,7 +21,7 @@ public class MyIntegrationTest {
     private CourseService courseService;
 
     @Test
-    public void testGet(){
+    public void test(){
         Course course = courseService.getCourse("courseId1");
 
         assertEquals(1, courseService.getAllCourses("topicId1").size());
